@@ -1,0 +1,21 @@
+The source files "example.cpp", "example_cross_correlation.cpp" provide two example programs that uses functions from the spiSeMe package.
+
+When properly compiled, "example.cpp" reads one among the files in /examples/data/ and writes two files containing i) several surrogate sequences; ii) autocorrelation for the original as well as for the surrogate sequences.
+
+The code "example_cross_correlation.cpp" reads two files in /examples/data/, "iei_henon.dat" and "iei_henon_bis.dat" and carries out the evaluation of cross correlation between the two sequences. Moreover, the threshold corresponding to the 1% significance level is assessed by means of surrogate generation.
+
+
+### Compiling programs ###
+
+In order to compile the programs, a Makefile with minimal instructions for Linux systems is provided in this folder. Package functions require the GNU Scientific Libraries to be compiled properly.
+
+
+### Test the programs ###
+
+The first example program can be run by typing, for example,
+	./example henon
+The program will read the "iei_henon.dat" file within /examples/data/ and will produce three surrogate sequences. The sequences are stored column-wise in "surr_iei_henon.dat" within this directory. The program also evaluates the autocorrelation of the original and of the surrogate sequences, storing all of them in the file "ac_henon.dat" within this folder. The first column of the file corresponds to the lag values, the second column to the autocorrelation of the original sequence, and subsequent columns to the autocorrelation of the surrogate sequences. Invoking the program with the labels "poisson" or "heartbeatlike" (instead of "henon") runs the same procedure on the other two respective files within /examples/data/. Please refer to the content of "example.cpp" for implementation details.
+
+The second example program can be run by typing
+	./example_cross_correlation
+The program will read "iei_henon.dat" and "iei_henon_bis.dat" and will store both the cross correlation and the threshold corresponding to the 1% significance level in a file "cross_correlation.dat". Please refer to the content of "example_cross_correlation.cpp" for implementation details.
