@@ -20,14 +20,12 @@ def spiSeMe_surrogate_dither(iei_sequence, dither_distribution = 'uniform', dist
 			dithering r.v. are drawn. Can either be 'uniform' (default),
 			'normal', or 'triangular'.
 
-	'distribution_parameter' Parameter D of the distribution from which
-			dithering elements have to be drawn (see 'distribution').
-			In the case of 'uniform', the distribution is given by
-			U(-D, D). In the case of 'normal', the distribution has
-			standard deviation equal to D/5.0. In the case of 'triangular',
-			the distribution is the symmetric triangular distribution
-			T(-D, D). By default, D is estimated as half the minimum IEI
-			within the original sequence.
+	'distribution_parameter' In the case of "uniform" or "triangular", sets
+			the half-width of the distribution from	which dithering
+			elements have to be drawn (see 'dither_distribution'). 
+			In the case of "normal", sets the distribution standard
+			deviation. By default, D is estimated as half the minimum
+			IEI within the original sequence.
 
 	'M'		Number of surrogate sequences to be generated. By
 			default, M = 1. Each of the M surrogate sequences
@@ -114,7 +112,7 @@ def spiSeMe_surrogate_dither(iei_sequence, dither_distribution = 'uniform', dist
 			deltas = distribution_parameter * (-1.0 + 2.0 * numpy.random.rand(arrival_times.size))
 			arrival_times = arrival_times + deltas;
 		elif (dither_distribution == 'normal'):
-			deltas = (distribution_parameter / 5.0) * numpy.random.normal(0.0, 1.0, arrival_times.size)
+			deltas = distribution_parameter * numpy.random.normal(0.0, 1.0, arrival_times.size)
 			arrival_times = arrival_times + deltas;
 		elif (dither_distribution == 'triangular'):
 			deltas = distribution_parameter * (numpy.random.rand(arrival_times.size) - numpy.random.rand(arrival_times.size))

@@ -26,8 +26,7 @@ This package is free software. It is distributed under the terms of the GNU Gene
 
 (1) Department of Physics, University of Trento, Trento, Italy  
 (2) CIMeC, Center for Mind/Brain Sciences, University of Trento, Rovereto, Italy  
-(3) Tokyo Tech World Research Hub Initiative (WRHI), Institute of Innovative Research, Tokyo Institute of Technology,
-Yokohama 226-8503, Japan  
+(3) FIRST, Institute of Innovative Research, Tokyo Institute of Technology, Yokohama 226-8503, Japan  
 (4) Complex Systems Theory Department, Institute of Nuclear Physics, Polish Academy of Sciences, 31-342 Kraków, Poland
 
 If the implementation of the JODI algorithm turns out to be useful for your research, please cite our paper:

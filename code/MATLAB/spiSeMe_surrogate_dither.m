@@ -16,14 +16,11 @@ function ieiSurrogates = spiSeMe_surrogate_dither(ieiSequence, varargin)
 %			elements to be drawn. Can either be 'uniform'
 %			(default), 'normal', or 'triangular'.
 %
-%	'distributionParameter'	(Approximate) half-width of the distribution from
-%			which dithering elements have to be drawn (see
-%			'Distribution'). In the case of 'uniform', the
-%			distribution is given by U(-D, D). In the
-%			case of 'normal', the distribution has standard
-%			deviation equal to D/5.0. In the case of 'triangular',
-%			the distribution is the symmetric triangular distribution
-%			T(-D, D). By default, D is estimated as half the minimum
+%	'distributionParameter' In the case of "uniform" or "triangular", sets
+%			the half-width of the distribution from	which dithering
+%			elements have to be drawn (see 'ditherDistribution'). 
+%			In the case of "normal", sets the distribution standard
+%			deviation. By default, D is estimated as half the minimum
 %			IEI within the original sequence.
 %
 %	'M'		Number of surrogate sequences to be generated. By
@@ -83,7 +80,7 @@ function ieiSurrogates = spiSeMe_surrogate_dither(ieiSequence, varargin)
 		if (strcmp(ditherDistribution, 'uniform'))
 			fprintf('###\t\tU(-D,D), with D = %f\n', DistributionParameter);
 		elseif (strcmp(ditherDistribution, 'normal'))
-			fprintf('###\t\tN(0,s^2), with s = %f\n', DistributionParameter/5.0);
+			fprintf('###\t\tN(0,s^2), with s = %f\n', DistributionParameter);
 		elseif (strcmp(ditherDistribution, 'triangular'))
 			fprintf('###\t\tT(-D,D), with D = %f\n', DistributionParameter);
 		end
@@ -111,7 +108,7 @@ function ieiSurrogates = spiSeMe_surrogate_dither(ieiSequence, varargin)
 			deltas = DistributionParameter .* (-1.0 + 2.0 .* rand(length(arrivalTimes), 1));
 			arrivalTimes = arrivalTimes + deltas;
 		elseif (strcmp(ditherDistribution, 'normal'))
-			deltas = (DistributionParameter / 5.0) .* randn(length(arrivalTimes), 1);
+			deltas = DistributionParameter .* randn(length(arrivalTimes), 1);
 			arrivalTimes = arrivalTimes + deltas;
 		elseif (strcmp(ditherDistribution, 'triangular'))
 			deltas = DistributionParameter .* (rand(length(arrivalTimes), 1) - rand(length(arrivalTimes), 1));

@@ -12,14 +12,11 @@
 //			elements to be drawn. Can either be "uniform"
 //			(default), "normal", or "triangular".
 //
-//	'distribution_parameter' (Approximate) half-width of the distribution from
-//			which dithering elements have to be drawn (see
-//			'dither_distribution'). In the case of "uniform", the
-//			distribution is given by U(-D, D). In the
-//			case of "normal", the distribution has standard
-//			deviation equal to D/5.0. In the case of "triangular",
-//			the distribution is the symmetric triangular distribution
-//			T(-D, D). By default, D is estimated as half the minimum
+//	'distribution_parameter' In the case of "uniform" or "triangular", sets
+//			the half-width of the distribution from	which dithering
+//			elements have to be drawn (see 'dither_distribution'). 
+//			In the case of "normal", sets the distribution standard
+//			deviation. By default, D is estimated as half the minimum
 //			IEI within the original sequence.
 //
 //	'M'		Number of surrogate sequences to generate.
@@ -79,7 +76,7 @@ spiSeMe_return_code spiSeMe_surrogate_dither(std::vector < std::vector<double> >
 		if (!strcmp(dither_distribution.c_str(), "uniform"))
 			std::cerr << "###\t\tU(-D,D), with D = " << distribution_parameter << "\n";
 		else if (!strcmp(dither_distribution.c_str(), "normal"))
-			std::cerr << "###\t\tN(0,s^2), with s = " << distribution_parameter/5.0 << "\n";
+			std::cerr << "###\t\tN(0,s^2), with s = " << distribution_parameter << "\n";
 		else if (!strcmp(dither_distribution.c_str(), "triangular"))
 			std::cerr << "###\t\tT(-D,D), with D = " << distribution_parameter << "\n";
 
@@ -110,7 +107,7 @@ spiSeMe_return_code spiSeMe_surrogate_dither(std::vector < std::vector<double> >
 				surrogate_arrival_times[i] += distribution_parameter*(-1.0 + 2.0*gsl_rng_uniform(r));
 		} else if (!strcmp(dither_distribution.c_str(), "normal")) {
 			for (int i = 0; i < surrogate_arrival_times.size(); i++)
-				surrogate_arrival_times[i] += gsl_ran_gaussian(r, distribution_parameter / 5.0);
+				surrogate_arrival_times[i] += gsl_ran_gaussian(r, distribution_parameter);
 		} else if (!strcmp(dither_distribution.c_str(), "triangular")) {
 			for (int i = 0; i < surrogate_arrival_times.size(); i++)
 				surrogate_arrival_times[i] += distribution_parameter * (gsl_rng_uniform(r) - gsl_rng_uniform(r));
