@@ -249,7 +249,7 @@ double check_sequence_convergence(const std::vector<double> & sequence_a, const 
 
 	double difference = 0.0;
 	for (int i = 0; i < N; i++) {
-		difference += abs(sequence_a[i] - sequence_b[i]);
+		difference += fabs(sequence_a[i] - sequence_b[i]);
 	}
 
 	return difference;

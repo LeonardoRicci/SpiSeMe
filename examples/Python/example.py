@@ -100,4 +100,4 @@ plt.ylabel('Autocorrelation')
 plt.show()
 
 # """ Save the surrogate sequence to a file """
-numpy.savetxt('surr_' + seq_label + '.dat', np.transpose(iei_surrogate_sequences), fmt='%.4e', delimiter='\t')
+np.savetxt('surr_' + seq_label + '.dat', np.transpose(iei_surrogate_sequences), fmt='%.4e', delimiter='\t')

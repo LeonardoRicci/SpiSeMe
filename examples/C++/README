@@ -8,6 +8,7 @@ The code "example_cross_correlation.cpp" reads two files in /examples/data/, "ie
 ### Compiling programs ###
 
 In order to compile the programs, a Makefile with minimal instructions for Linux systems is provided in this folder. Package functions require the GNU Scientific Libraries to be compiled properly.
+Please note that in its current form the Makefile uses g++ as compiler, and gsl-config to provide the required GSL compilation flags. Changes to the Makefile should be made in case these two executables are not available, or if alternative compilation configurations are wanted.
 
 
 ### Test the programs ###

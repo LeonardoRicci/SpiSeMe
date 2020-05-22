@@ -271,17 +271,17 @@ double compute_cost_function(const std::vector<double> & autocorr_a, const std::
 	double cost = 0.0;
 	if (cost_code == 0) {
 		for (int i = 0; i < K; i++) {
-			if (abs(autocorr_a[i] - autocorr_b[i]) > cost) {
-			 	cost = abs(autocorr_a[i] - autocorr_b[i]);
+			if (fabs(autocorr_a[i] - autocorr_b[i]) > cost) {
+			 	cost = fabs(autocorr_a[i] - autocorr_b[i]);
 			}
 		}
 	} else if (cost_code == 1) {
 		for (int i = 0; i < K; i++) {
-			cost += abs(autocorr_a[i] - autocorr_b[i]);
+			cost += fabs(autocorr_a[i] - autocorr_b[i]);
 		}
 	} else if (cost_code == 2) {
 		for (int i = 0; i < K; i++) {
-			cost += abs(autocorr_a[i] - autocorr_b[i]) * abs(autocorr_a[i] - autocorr_b[i]);
+			cost += fabs(autocorr_a[i] - autocorr_b[i]) * fabs(autocorr_a[i] - autocorr_b[i]);
 		}
 	}
 

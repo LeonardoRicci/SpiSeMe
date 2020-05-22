@@ -17,6 +17,8 @@ Function documentation can be found in `/docs/manual.pdf`.
 
 ### Setup
 
+Functions have to be compiled under the C++11 standard.
+
 The package requires the [GNU Scientific Libraries](https://www.gnu.org/software/gsl/) to run the C++ implementation of the functions.
 
 Each function is provided within a dedicated source file (`.cpp`). Function declarations are reported in the header file `spiSeMe.h`.
