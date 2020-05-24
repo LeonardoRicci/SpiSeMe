@@ -29,6 +29,10 @@ spiSeMe_return_code spiSeMe_distribution_test(double & p, double & d, const std:
 	// --- Input parsing & validation
 	unsigned int n_A = iei_sequence_A.size();
 	unsigned int n_B = iei_sequence_B.size();
+	if ((n_A < 2) || (n_B < 2)) {
+		std::cerr << "ERROR (in spiSeMe_event_cross_correlation): input sequences are not actual vectors (length < 2).\n";
+		return SSM_BAD_ARGUMENT;
+	}
 	for (int i = 0; i < n_A; i++) {
 		if (iei_sequence_A[i] < 0) {
 			std::cerr << "ERROR (in spiSeMe_distribution_test): invalid input sequence. One or more IEIs are negative.\n";

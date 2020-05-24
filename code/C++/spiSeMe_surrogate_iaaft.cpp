@@ -60,7 +60,7 @@ spiSeMe_return_code spiSeMe_surrogate_iaaft(std::vector < std::vector <double> >
 		return SSM_BAD_ARGUMENT;
 	}
 	if ((strcmp(exactly_preserve.c_str(), "distribution")) && (strcmp(exactly_preserve.c_str(), "spectrum"))) {
-		std::cerr << "ERROR (in spiSeMe_surrogate_iaaft): \n";
+		std::cerr << "ERROR (in spiSeMe_surrogate_iaaft): function argument 'exactly_preserve' must be either 'distribution' or 'spectrum'.\n";
 		return SSM_BAD_ARGUMENT;
 	}
 	if (M < 1) {

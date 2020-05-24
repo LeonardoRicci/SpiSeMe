@@ -47,6 +47,10 @@ spiSeMe_return_code spiSeMe_event_autocorrelation(std::vector<double> & A, std::
 		return SSM_BAD_ARGUMENT;
 	}
 	unsigned int N = iei_sequence.size();
+	if (N < 2) {
+		std::cerr << "ERROR (in spiSeMe_event_autocorrelation): input sequences is not an actual vector (length < 2).\n";
+		return SSM_BAD_ARGUMENT;
+	}
 	for (int i = 0; i < N; i++) {
 		if (iei_sequence[i] < 0) {
 			std::cerr << "ERROR (in spiSeMe_event_autocorrelation): invalid input sequence. One or more IEIs are negative.\n";

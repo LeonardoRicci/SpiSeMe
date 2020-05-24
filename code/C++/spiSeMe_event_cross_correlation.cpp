@@ -38,6 +38,10 @@ spiSeMe_return_code spiSeMe_event_cross_correlation(std::vector<double> & C, std
 	}
 	unsigned int Na = iei_sequence_A.size();
 	unsigned int Nb = iei_sequence_B.size();
+	if ((Na < 2) || (Nb < 2)) {
+		std::cerr << "ERROR (in spiSeMe_event_cross_correlation): input sequences are not actual vectors (length < 2).\n";
+		return SSM_BAD_ARGUMENT;
+	}
 	unsigned int N = (Na > Nb)? Na : Nb;
 	for (int i = 0; i < Na; i++) {
 		if (iei_sequence_A[i] < 0) {

@@ -47,7 +47,7 @@ function ieiSurrogates = spiSeMe_surrogate_iaaft(ieiSequence, varargin)
 	addParameter(ip, 'verbose', true, @islogical);
 	ip.KeepUnmatched = false;
 	parse(ip, ieiSequence, varargin{:});
-	preserve = ip.Results.ExactlyPreserve;
+	preserve = ip.Results.exactlyPreserve;
 	if (~iscolumn(ieiSequence))
 		ieiSequence = ieiSequence';
 	end

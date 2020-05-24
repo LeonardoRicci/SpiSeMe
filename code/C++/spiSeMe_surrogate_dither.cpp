@@ -14,7 +14,7 @@
 //
 //	'distribution_parameter' In the case of "uniform" or "triangular", sets
 //			the half-width of the distribution from	which dithering
-//			elements have to be drawn (see 'dither_distribution'). 
+//			elements have to be drawn (see 'dither_distribution').
 //			In the case of "normal", sets the distribution standard
 //			deviation. By default, D is estimated as half the minimum
 //			IEI within the original sequence.
@@ -70,7 +70,7 @@ spiSeMe_return_code spiSeMe_surrogate_dither(std::vector < std::vector<double> >
 	}
 
 	// --- Provide some information
-	if (verbose)
+	if (verbose) {
 		std::cerr << "\n### Starting dithering routine ###\n";
 		std::cerr << "###\tDither distribution: " << dither_distribution << "\n";
 		if (!strcmp(dither_distribution.c_str(), "uniform"))
@@ -79,6 +79,7 @@ spiSeMe_return_code spiSeMe_surrogate_dither(std::vector < std::vector<double> >
 			std::cerr << "###\t\tN(0,s^2), with s = " << distribution_parameter << "\n";
 		else if (!strcmp(dither_distribution.c_str(), "triangular"))
 			std::cerr << "###\t\tT(-D,D), with D = " << distribution_parameter << "\n";
+	}
 
 	// --- Build arrival times to be dithered
 	std::vector<double> original_arrival_times(N+1, 0.0);

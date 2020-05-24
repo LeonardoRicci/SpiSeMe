@@ -62,15 +62,15 @@ function ieiSurrogates = spiSeMe_surrogate_dither(ieiSequence, varargin)
 		error('Function argument "M" must be a positive integer.')
 	end
 	beVerbose = ip.Results.verbose;
-	ditherDistribution = ip.Results.DitherDistribution;
-	DistributionParameter = ip.Results.DistributionParameter;
+	ditherDistribution = ip.Results.ditherDistribution;
+	distributionParameter = ip.Results.distributionParameter;
 	if ((~strcmp(ditherDistribution, 'uniform')) && (~strcmp(ditherDistribution, 'normal')) && (~strcmp(ditherDistribution, 'triangular')))
 		error('Function argument "distribution" does not match any of the allowed values ("uniform", "normal", "triangular").');
 	end
 
-	% --- If not provided, estimate DistributionParameter parameter
-	if (DistributionParameter <= 0)
-		DistributionParameter = min(ieiSequence)/2.0;
+	% --- If not provided, estimate distributionParameter parameter
+	if (distributionParameter <= 0)
+		distributionParameter = min(ieiSequence)/2.0;
 	end
 
 	% --- Provide some information
@@ -78,11 +78,11 @@ function ieiSurrogates = spiSeMe_surrogate_dither(ieiSequence, varargin)
 		fprintf('\n### Starting dithering routine ###\n');
 		fprintf('###\tDither distribution: %s\n', ditherDistribution);
 		if (strcmp(ditherDistribution, 'uniform'))
-			fprintf('###\t\tU(-D,D), with D = %f\n', DistributionParameter);
+			fprintf('###\t\tU(-D,D), with D = %f\n', distributionParameter);
 		elseif (strcmp(ditherDistribution, 'normal'))
-			fprintf('###\t\tN(0,s^2), with s = %f\n', DistributionParameter);
+			fprintf('###\t\tN(0,s^2), with s = %f\n', distributionParameter);
 		elseif (strcmp(ditherDistribution, 'triangular'))
-			fprintf('###\t\tT(-D,D), with D = %f\n', DistributionParameter);
+			fprintf('###\t\tT(-D,D), with D = %f\n', distributionParameter);
 		end
 	end
 
@@ -105,13 +105,13 @@ function ieiSurrogates = spiSeMe_surrogate_dither(ieiSequence, varargin)
 
 		% --- Apply dithering to arrival times
 		if (strcmp(ditherDistribution, 'uniform'))
-			deltas = DistributionParameter .* (-1.0 + 2.0 .* rand(length(arrivalTimes), 1));
+			deltas = distributionParameter .* (-1.0 + 2.0 .* rand(length(arrivalTimes), 1));
 			arrivalTimes = arrivalTimes + deltas;
 		elseif (strcmp(ditherDistribution, 'normal'))
-			deltas = DistributionParameter .* randn(length(arrivalTimes), 1);
+			deltas = distributionParameter .* randn(length(arrivalTimes), 1);
 			arrivalTimes = arrivalTimes + deltas;
 		elseif (strcmp(ditherDistribution, 'triangular'))
-			deltas = DistributionParameter .* (rand(length(arrivalTimes), 1) - rand(length(arrivalTimes), 1));
+			deltas = distributionParameter .* (rand(length(arrivalTimes), 1) - rand(length(arrivalTimes), 1));
 			arrivalTimes = arrivalTimes + deltas;
 		end
 

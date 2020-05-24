@@ -95,52 +95,52 @@ def spiSeMe_surrogate_sa(iei_sequence, autocorr_bin_width, autocorr_max_lag, a =
 		autocorr_bin_width = float(autocorr_bin_width)
 	except:
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "autocorr_bin_width" must be a float or convertible to a float.')
-		return False, False
+		return False
 	try:
 		autocorr_max_lag = float(autocorr_max_lag)
 	except:
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "autocorr_max_lag" must be a float or convertible to a float.')
-		return False, False
+		return False
 	if (autocorr_max_lag <= 0) or (autocorr_bin_width <= 0):
 		print('ERROR (in spiSeMe_surrogate_sa): function arguments "autocorr_bin_width" and "max_lag" must be positive.')
-		return False, False
+		return False
 	if (autocorr_max_lag <= autocorr_bin_width):
 		print('ERROR (in spiSeMe_surrogate_sa): invalid parameter. "autocorr_bin_width" must be smaller than "autocorr_max_lag".')
-		return False, False
+		return False
 	try:
 		starting_temperature = float(T)
 	except ValueError:
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "starting_temperature" must be a float or convertible to a float.')
-		return False, False
+		return False
 	try:
 		cooling_factor = float(a)
 	except ValueError:
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "cooling_factor" must be a float or convertible to a float.')
-		return False, False
+		return False
 	if (starting_temperature < 0):
 		print('ERROR (in spiSeMe_surrogate_sa): invalid parameter. "starting_temperature" must be positive.')
-		return False, False
+		return False
 	if ((cooling_factor >= 1.0) or (cooling_factor <= 0)):
 		print('ERROR (in spiSeMe_surrogate_sa): invalid parameter. "cooling_factor" must be positive and less than unity.')
-		return False, False
+		return False
 	try:
 		n_total = int(n_total)
 	except ValueError:
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "n_total" must be an integer.')
-		return False, False
+		return False
 	if (n_total <= 0):
 		n_total = int(L)
 	try:
 		n_successful = int(n_successful)
 	except ValueError:
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "n_successful" must be an integer.')
-		return False, False
+		return False
 	if (n_successful <= 0):
 		n_successful = int(L / 2)
 
-	if ((cost_function != 'max') and (cost_function != 'L1') and (cost_function == 'L2')):
+	if ((cost_function != 'max') and (cost_function != 'L1') and (cost_function != 'L2')):
 		print('ERROR (in spiSeMe_surrogate_sa): function argument "cost_function" is not among the possible ones ("max", "L1" or "L2").')
-		return False, False
+		return False
 
 	# --- Assess autocorrelation of original sequence
 	original_autocorr, lags = spiseme_ac.spiSeMe_event_autocorrelation(iei_sequence, autocorr_bin_width, autocorr_max_lag)

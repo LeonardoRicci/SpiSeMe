@@ -113,7 +113,7 @@ function ieiSurrogates = spiSeMe_surrogate_sa(ieiSequence, autocorrBinWidth, aut
 		error('Invalid parameter: starting temperature must be positive.')
 	end
 	if ((coolingFactor >= 1.0) || (coolingFactor <= 0))
-		print('Invalid parameter: cooling factor must be positive and less than unity.')
+		error('Invalid parameter: cooling factor must be positive and less than unity.')
 	end
 	if (strcmp(ip.Results.costFunction, 'max'))
 		costIdx = 0;

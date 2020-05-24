@@ -22,7 +22,7 @@ def spiSeMe_surrogate_dither(iei_sequence, dither_distribution = 'uniform', dist
 
 	'distribution_parameter' In the case of "uniform" or "triangular", sets
 			the half-width of the distribution from	which dithering
-			elements have to be drawn (see 'dither_distribution'). 
+			elements have to be drawn (see 'dither_distribution').
 			In the case of "normal", sets the distribution standard
 			deviation. By default, D is estimated as half the minimum
 			IEI within the original sequence.
@@ -70,10 +70,11 @@ def spiSeMe_surrogate_dither(iei_sequence, dither_distribution = 'uniform', dist
 		distribution_parameter = float(distribution_parameter)
 	except:
 		print('ERROR (in spiSeMe_surrogate_dither): function argument "distribution_parameter" must be a float or convertible to a float.')
-		return False, False
+		return False
 
 	if ((dither_distribution != 'uniform') and (dither_distribution != 'normal') and (dither_distribution != 'triangular')):
 		print('ERROR (in spiSeMe_surrogate_dither): function argument "dither_distribution" does not match any of the allowed values ("uniform", "normal", "triangular").')
+		return False
 
 
 	# --- If not assigned, estimate the distribution parameter as half the minimum IEI (in this way, in the case of a uniform distribution, we avoid to change the order of events).
